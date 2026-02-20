@@ -1,0 +1,226 @@
+<!-- CONTACT FORM SECTION - Added below FAQ -->
+<section id="contact" class="contact-section section-padding" style="background: linear-gradient(135deg, var(--deep-emerald) 0%, var(--medium-charcoal) 100%);">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2 style="color: white;">Contact & Appointment Booking</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">Get in touch to book an appointment or inquire about services</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info animate-on-scroll">
+                <div class="contact-info-box">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Phone</h3>
+                        <p><a href="tel:0892403256" style="color: var(--light-gold);">089 240 3256</a></p>
+                        <p class="contact-note">Available Monday-Friday, 9am-6pm</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-box">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:Amear.Mohammed@gmail.com" style="color: var(--light-gold);">Amear.Mohammed@gmail.com</a></p>
+                        <p class="contact-note">Response within 24 hours</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-box">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Service Area</h3>
+                        <p>Dublin 15 & Surrounding Area</p>
+                        <p class="contact-note">Home visits available by appointment</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-box">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Hours</h3>
+                        <p>Monday - Friday: 9am - 6pm</p>
+                        <p>Saturday: By appointment only</p>
+                        <p class="contact-note">Emergency services available</p>
+                    </div>
+                </div>
+                
+                <div class="services-reminder" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold);">
+                    <h4 style="color: var(--gold);">Services Offered:</h4>
+                    <ul>
+                        <li>Document Witnessing & Certification</li>
+                        <li>Statutory Declarations</li>
+                        <li>Passport Application Assistance</li>
+                        <li>Proof of Identity Verification</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="contact-form-container animate-on-scroll">
+                <div class="form-header">
+                    <h3 style="color: var(--deep-emerald);">Book an Appointment</h3>
+                    <p style="color: var(--medium-charcoal);">Fill out the form below and I'll get back to you within 24 hours to confirm your appointment.</p>
+                </div>
+                
+                <!-- Contact Form - Integrated with YOUR FormSubmit link -->
+                <form 
+                    class="contact-form" 
+                    action="https://formsubmit.co/el/cegipu" 
+                    method="POST"
+                >
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="📅 New Appointment Request - Peace Commissioner">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Redirect to a thank you page after submission -->
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                    <!-- Auto-response message for users -->
+                    <input type="hidden" name="_autoresponse" value="Thank you for your appointment request! This is an automated confirmation that I have received your message. I will contact you within 24 hours to confirm your appointment details. Please ensure you have all original documents and photo ID ready. - Amear Mohammed">
+                    <!-- Add your email to CC if needed -->
+                    <input type="hidden" name="_cc" value="Amear.Mohammed@gmail.com">
+                    <!-- Prevent FormSubmit from adding branding -->
+                    <input type="hidden" name="_formsubmit_id" value="peace-commissioner-appointment">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" style="color: var(--deep-emerald);">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" style="color: var(--deep-emerald);">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" style="color: var(--deep-emerald);">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="089 123 4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service" style="color: var(--deep-emerald);">Service Required *</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="Document Witnessing">Document Witnessing</option>
+                                <option value="Statutory Declaration">Statutory Declaration</option>
+                                <option value="Passport Application">Passport Application</option>
+                                <option value="Document Certification">Document Certification</option>
+                                <option value="Marriage Notice Form">Marriage Notice Form</option>
+                                <option value="Proof of Identity">Proof of Identity</option>
+                                <option value="Other">Other Service (specify in message)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date" style="color: var(--deep-emerald);">Preferred Appointment Date *</label>
+                        <input type="date" id="date" name="preferred_date" required>
+                    </div>
+                    
+                    <!-- Appointment Details Section -->
+                    <div class="form-group">
+                        <label for="appointment-details" style="color: var(--deep-emerald);">Appointment Details *</label>
+                        <textarea id="appointment-details" name="appointment_details" rows="3" required placeholder="Please describe what you need help with during your appointment..."></textarea>
+                        <small class="form-hint">Example: "I need to get a statutory declaration witnessed for my passport application"</small>
+                    </div>
+                    
+                    <!-- Additional Message Section -->
+                    <div class="form-group">
+                        <label for="additional-message" style="color: var(--deep-emerald);">Additional Information or Questions</label>
+                        <textarea id="additional-message" name="additional_message" rows="3" placeholder="Any other information, special requirements, or questions you have..."></textarea>
+                        <small class="form-hint">Optional: Add any other details that might be helpful for your appointment</small>
+                    </div>
+                    
+                    <!-- Terms and Conditions -->
+                    <div class="terms-section" style="background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3);">
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms" style="color: var(--medium-charcoal);">I understand that Peace Commissioner services are for witnessing/certifying documents only and do not constitute legal advice *</label>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy" style="color: var(--medium-charcoal);">I agree to the privacy policy and understand my data will be used solely for appointment purposes *</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-submit" style="background: linear-gradient(135deg, var(--deep-emerald) 0%, var(--vibrant-emerald) 100%); color: white;">
+                            <i class="fas fa-paper-plane"></i> Send Appointment Request
+                        </button>
+                        <p class="form-note">
+                            <i class="fas fa-shield-alt" style="color: var(--vibrant-emerald);"></i> Your information is secure. Form submissions are encrypted.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="appointment-instructions animate-on-scroll" style="background: rgba(255, 255, 255, 0.05);">
+            <h3 style="color: var(--gold); text-align: center;">What to Bring to Your Appointment:</h3>
+            <div class="instructions-grid">
+                <div class="instruction-item">
+                    <div class="instruction-icon" style="background: var(--gold); color: var(--deep-emerald);">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h4 style="color: white;">Original Documents</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8);">Bring all original documents that need to be witnessed or certified.</p>
+                </div>
+                
+                <div class="instruction-item">
+                    <div class="instruction-icon" style="background: var(--gold); color: var(--deep-emerald);">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h4 style="color: white;">Photo ID</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8);">Valid passport, driver's license, or other government-issued photo ID.</p>
+                </div>
+                
+                <div class="instruction-item">
+                    <div class="instruction-icon" style="background: var(--gold); color: var(--deep-emerald);">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h4 style="color: white;">Completed Forms</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8);">Fill out forms in advance when possible to save time.</p>
+                </div>
+                
+                <div class="instruction-item">
+                    <div class="instruction-icon" style="background: var(--gold); color: var(--deep-emerald);">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <h4 style="color: white;">Payment (if applicable)</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8);">Most personal services are free. Business services may have fees.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-disclaimer animate-on-scroll" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold);">
+            <div class="disclaimer-content">
+                <i class="fas fa-info-circle" style="color: var(--gold);"></i>
+                <p style="color: rgba(255, 255, 255, 0.9);"><strong>Important:</strong> Please ensure all documents are original and you have valid photo ID. For complex cases or large document volumes, please mention this in your message. Emergency appointments are subject to availability.</p>
+            </div>
+        </div>
+        
+        <div class="cta-buttons" style="margin-top: 40px; text-align: center;">
+            <a href="#peace-faq" class="btn btn-secondary" onclick="showPage('peace-faq')">
+                <i class="fas fa-question-circle"></i> View FAQ
+            </a>
+            <a href="tel:0892403256" class="btn" style="background: var(--gold); color: var(--deep-emerald);">
+                <i class="fas fa-phone-alt"></i> Call Now
+            </a>
+        </div>
+    </div>
+</section>
+
+    </div>
+</section>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amear Mohammed | Peace Commissioner & Community Leader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/animations.css">
+</head>
+
+<body>
+    <!-- Lightbox/Modal for Images -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption">
+                <h4 id="lightboxTitle"></h4>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#home" class="logo" onclick="event.preventDefault(); showPage('home');">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                Amear<span>Mohammed</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-overlay" id="navOverlay"></div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" onclick="event.preventDefault(); showPage('home');"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#about" onclick="event.preventDefault(); showPage('about');"><i class="fas fa-user"></i> About</a></li>
+                    
+                    <!-- Updated Peace Commissioner with Dropdown -->
+                    <li class="dropdown" id="peaceCommissionerDropdown">
+                        <a href="#peace-commissioner" onclick="event.preventDefault(); showPage('peace-commissioner');"><i class="fas fa-handshake"></i> Peace Commissioner <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#peace-commissioner" onclick="event.preventDefault(); showPage('peace-commissioner');"><i class="fas fa-info-circle"></i> Services Overview</a></li>
+                            <li><a href="#peace-faq" onclick="event.preventDefault(); showPage('peace-faq');"><i class="far fa-question-circle"></i> FAQ</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown" id="servicesDropdown">
+                        <a href="#services" onclick="event.preventDefault(); showPage('services');"><i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#youth-education" onclick="event.preventDefault(); showPage('youth-education');"><i class="fas fa-graduation-cap"></i> Youth & Education</a></li>
+                            <li><a href="#career-support" onclick="event.preventDefault(); showPage('career-support');"><i class="fas fa-briefcase"></i> Career Support</a></li>
+                            <li><a href="#cricket-development" onclick="event.preventDefault(); showPage('cricket-development');"><i class="fas fa-cricket"></i> Cricket Development</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact" class="nav-cta" onclick="event.preventDefault(); showPage('contact');"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- Loading initial content -->
+        <div id="loading-content" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+            <div class="loading-spinner" style="width: 60px; height: 60px; border: 6px solid #f3f3f3; border-top: 6px solid #004d26; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        </div>
+        <!-- Pages will be loaded here via JavaScript -->
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Main application logic
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, initializing...');
+            
+            // Load home page initially
+            showPage('home');
+            
+            // Set up hash-based navigation
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1);
+                console.log('Hash changed to:', hash);
+                if (hash && hash !== 'home') {
+                    showPage(hash);
+                }
+            });
+            
+            // Set current year in footer (will be set when home page loads)
+            if (document.getElementById('currentYear')) {
+                document.getElementById('currentYear').textContent = new Date().getFullYear();
+            }
+        });
+
+        // Page loading function
+        async function loadPage(pageId) {
+            console.log('Loading page:', pageId);
+            try {
+                // Update URL hash
+                window.location.hash = pageId;
+                
+                // Update active nav link
+                document.querySelectorAll('nav ul li a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${pageId}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Hide loading content
+                const loadingContent = document.getElementById('loading-content');
+                if (loadingContent) {
+                    loadingContent.style.display = 'none';
+                }
+                
+                // Load page content
+                let html = '';
+                if (pageId === 'home') {
+                    // For home page, use the inline HTML that was in the file
+                    html = `<!-- Home Page -->
+<section class="hero">
+    <div class="container hero-container">
+        <div class="hero-content animate-on-scroll">
+            <h1>Amear Mohammed</h1>
+            <div class="tagline">Peace Commissioner & Community Leader</div>
+            <p>Dedicated to serving communities across Ireland through professional peace commissioner services, youth development initiatives, career support programs, and cricket development. Committed to fostering unity, opportunity, and growth for all.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn" onclick="showPage('contact')"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+                <a href="#services" class="btn btn-secondary" onclick="showPage('services')"><i class="fas fa-info-circle"></i> Explore Services</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="profile-container animate-on-scroll">
+                <img src="images/amearmohammedcircleimage.png" alt="Amear Mohammed - Peace Commissioner">
+            </div>
+            <div class="profile-badge animate-on-scroll">
+                <i class="fas fa-award"></i> Serving All Ireland
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section section-padding">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>My Services</h2>
+            <p class="section-subtitle">Comprehensive support services for individuals and communities across Ireland, delivered with professionalism and dedication.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll" onclick="showPage('peace-commissioner')" style="cursor: pointer;">
+                <div class="service-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Peace Commissioner Services</h3>
+                <p>Certified peace commissioner providing statutory declarations, affidavit witnessing, document certification, and official witnessing services for legal documents throughout Ireland.</p>
+                <a href="#peace-commissioner" class="service-link" onclick="showPage('peace-commissioner')">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card animate-on-scroll" onclick="showPage('youth-education')" style="cursor: pointer;">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Youth & Education Support</h3>
+                <p>Mentorship programs, educational workshops, career guidance, and youth development initiatives to empower the next generation of Irish leaders.</p>
+                <a href="#youth-education" class="service-link" onclick="showPage('youth-education')">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card animate-on-scroll" onclick="showPage('cricket-development')" style="cursor: pointer;">
+                <div class="service-icon">
+                    <i class="fas fa-cricket"></i>
+                </div>
+                <h3>Cricket Development</h3>
+                <p>Cricket coaching, sports club development, athletic programs, and community sports initiatives promoting health, teamwork, and inclusion across Ireland.</p>
+                <a href="#cricket-development" class="service-link" onclick="showPage('cricket-development')">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card animate-on-scroll" onclick="showPage('career-support')" style="cursor: pointer;">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Career Support</h3>
+                <p>Professional CV writing, interview preparation, career counseling, mentorship programs, and job search assistance for individuals at all career stages.</p>
+                <a href="#career-support" class="service-link" onclick="showPage('career-support')">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Irish Landscape & Community Section -->
+<section class="landscape-section section-padding">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Community Across Ireland</h2>
+            <p class="section-subtitle">Serving and connecting with communities throughout the beautiful Irish landscape</p>
+        </div>
+        
+        <div class="community-text animate-on-scroll">
+            <p>From the bustling cities to the serene countryside, my work spans across Ireland's diverse communities. I'm committed to bringing professional services, educational opportunities, and community development initiatives to every corner of this beautiful country, fostering connections and positive change wherever I go.</p>
+        </div>
+        
+        <div class="landscape-grid">
+            <div class="landscape-item animate-on-scroll">
+                <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--vibrant-emerald) 0%, var(--light-emerald) 100%);"></div>
+                <div class="landscape-overlay">
+                    <h4>Rural Communities</h4>
+                    <p>Supporting rural areas with accessible services and community initiatives</p>
+                </div>
+            </div>
+            <div class="landscape-item animate-on-scroll">
+                <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--deep-emerald) 0%, var(--vibrant-emerald) 100%);"></div>
+                <div class="landscape-overlay">
+                    <h4>Urban Centers</h4>
+                    <p>Engaging with city communities through diverse programs and services</p>
+                </div>
+            </div>
+            <div class="landscape-item animate-on-scroll">
+                <div style="width:100%;height:100%;background:linear-gradient(135deg, #007a3d 0%, #00a896 100%);"></div>
+                <div class="landscape-overlay">
+                    <h4>Coastal Regions</h4>
+                    <p>Working with coastal communities on development and support initiatives</p>
+                </div>
+            </div>
+            <div class="landscape-item animate-on-scroll">
+                <div style="width:100%;height:100%;background:linear-gradient(135deg, #004d26 0%, #007a3d 100%);"></div>
+                <div class="landscape-overlay">
+                    <h4>Mountain Communities</h4>
+                    <p>Connecting with communities in Ireland's beautiful mountain regions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer on Home Page -->
+<footer class="section-padding main-footer">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-column animate-on-scroll">
+                <h3>Amear Mohammed</h3>
+                <p class="footer-about">Peace Commissioner, Community Leader & Professional Support Specialist serving communities across Ireland with dedication, integrity, and a commitment to positive change.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column animate-on-scroll">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home" onclick="showPage('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about" onclick="showPage('about')"><i class="fas fa-chevron-right"></i> About Me</a></li>
+                    <li><a href="#services" onclick="showPage('services')"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="#community" onclick="showPage('community')"><i class="fas fa-chevron-right"></i> Community Work</a></li>
+                    <li><a href="#contact" onclick="showPage('contact')"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column animate-on-scroll">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#peace-commissioner" onclick="showPage('peace-commissioner')"><i class="fas fa-chevron-right"></i> Peace Commissioner</a></li>
+                    <li><a href="#youth-education" onclick="showPage('youth-education')"><i class="fas fa-chevron-right"></i> Youth & Education</a></li>
+                    <li><a href="#career-support" onclick="showPage('career-support')"><i class="fas fa-chevron-right"></i> Career Support</a></li>
+                    <li><a href="#cricket-development" onclick="showPage('cricket-development')"><i class="fas fa-chevron-right"></i> Cricket Development</a></li>
+                </ul>
+            </div>
+            <div class="footer-column animate-on-scroll">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><a href="tel:0892403256"><i class="fas fa-phone"></i> 089 240 3256</a></li>
+                    <li><a href="mailto:Amear.Mohammed@gmail.com"><i class="fas fa-envelope"></i> Amear.Mohammed@gmail.com</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Serving Dublin 15 & Surrounding Area</a></li>
+                    <li><a href="#contact" class="btn" onclick="showPage('contact')" style="margin-top: 15px; display: inline-block;"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright animate-on-scroll">
+            <p>&copy; <span id="currentYear">${new Date().getFullYear()}</span> Amear Mohammed. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p style="margin-top: 10px; color: var(--light-gold); font-weight: 500;">Serving Dublin 15 & Surrounding Area</p>
+        </div>
+    </div>
+</footer>`;
+                } else {
+                    // For other pages, try to fetch from pages directory
+                    const response = await fetch(`pages/${pageId}.html`);
+                    if (!response.ok) {
+                        throw new Error(`Page ${pageId} not found`);
+                    }
+                    html = await response.text();
+                }
+                
+                document.getElementById('main-content').innerHTML = html;
+                
+                // Close mobile menu if open
+                const mainNav = document.getElementById('mainNav');
+                const navOverlay = document.getElementById('navOverlay');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    document.body.style.overflow = '';
+                }
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Trigger animations on the new page
+                setTimeout(() => {
+                    if (typeof animateOnScroll === 'function') {
+                        animateOnScroll();
+                    }
+                }, 100);
+                
+            } catch (error) {
+                console.error('Error loading page:', error);
+                document.getElementById('main-content').innerHTML = `
+                    <div class="container section-padding">
+                        <div class="section-title">
+                            <h2>Page Not Found</h2>
+                            <p class="section-subtitle">The requested page could not be loaded.</p>
+                            <a href="#home" class="btn" onclick="showPage('home')">Return to Home</a>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Alias for compatibility with existing code
+        function showPage(pageId) {
+            loadPage(pageId);
+        }
+    </script>
+    
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- External Scripts -->
+    <script src="js/navigation.js"></script>
+    <script src="js/lightbox.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
