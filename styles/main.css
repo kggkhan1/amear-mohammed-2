@@ -2004,7 +2004,7 @@ footer::before {
 }
 
 .ireland-flag {
-    width: 500px; /* larger flag */
+    width: 300px; /* larger flag */
     height: auto;
     border-radius: 8px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.25);
@@ -2013,4 +2013,5 @@ footer::before {
 
 .ireland-flag:hover {
     transform: scale(1.05);
+
 }
