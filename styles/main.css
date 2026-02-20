@@ -2015,3 +2015,22 @@ footer::before {
     transform: scale(1.05);
 
 }
+.flag-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    animation-delay: 0.2s;
+}
+
+.irish-flag {
+    width: 70px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.irish-flag:hover {
+    transform: scale(1.1);
+}
+
